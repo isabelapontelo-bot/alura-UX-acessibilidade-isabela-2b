@@ -7,15 +7,15 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 22px; /* Fonte maior para facilitar a leitura */
+    font-size: 22px;
     line-height: 1.6;
     background-color: #F4F4F9;
-    color: #1A1A1A; /* Alto contraste com o fundo */
+    color: #1A1A1A;
 }
 
 /* Cabeçalho */
 .cabecalho {
-    background-color: #004080; /* Azul escuro legível */
+    background-color: #004080;
     color: #FFFFFF;
     text-align: center;
     padding: 30px 20px;
@@ -61,18 +61,109 @@ body {
     padding-bottom: 5px;
 }
 
+/* Links dos Cards */
+.item-dica-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* Estilo Base dos Cards */
 .item-dica {
     background-color: #FFFFFF;
     border: 2px solid #CCCCCC;
     border-radius: 10px;
     padding: 20px;
-    margin-bottom: 20px;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    cursor: pointer;
+}
+
+.item-dica:hover {
+    transform: translateY(-3px);
+    border-color: #0056B3;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 .item-dica h3 {
     color: #0056B3;
     font-size: 24px;
     margin-bottom: 10px;
+}
+
+/* --- EFEITO MODAL COM CSS (:target) --- */
+
+/* Fundo Escuro do Modal (Invisível por padrão) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+/* Camada que escurece a tela */
+.modal-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+}
+
+/* Conteúdo do Card em Destaque */
+.modal-conteudo {
+    position: relative;
+    background-color: #FFFFFF;
+    border: 4px solid #0056B3;
+    border-radius: 16px;
+    padding: 40px 30px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.5);
+    z-index: 1001;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.modal-conteudo h3 {
+    color: #0056B3;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+/* Botão de Fechar (X) */
+.fechar-modal {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 36px;
+    text-decoration: none;
+    color: #555;
+    font-weight: bold;
+}
+
+.fechar-modal:hover {
+    color: #000;
+}
+
+/* QUANDO O CARD É CLICADO (:target ativado) */
+.modal-overlay:target {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-overlay:target .modal-conteudo {
+    transform: scale(1);
 }
 
 /* Botão de Ajuda */
@@ -82,7 +173,7 @@ body {
 }
 
 .botao-ajuda {
-    background-color: #28A745; /* Verde de fácil identificação */
+    background-color: #28A745;
     color: #FFFFFF;
     font-size: 26px;
     font-weight: bold;
