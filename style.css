@@ -77,6 +77,9 @@ body {
     padding: 20px;
     transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .item-dica:hover {
@@ -85,109 +88,166 @@ body {
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
-.item-dica h3 {
+.info-card h3 {
     color: #0056B3;
     font-size: 24px;
     margin-bottom: 10px;
 }
 
-/* --- EFEITO MODAL COM CSS (:target) --- */
-
-/* Fundo Escuro do Modal (Invisível por padrão) */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    z-index: 1000;
-}
-
-/* Camada que escurece a tela */
-.modal-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(4px);
-}
-
-/* Conteúdo do Card em Destaque */
-.modal-conteudo {
-    position: relative;
-    background-color: #FFFFFF;
-    border: 4px solid #0056B3;
-    border-radius: 16px;
-    padding: 40px 30px;
-    max-width: 600px;
-    width: 90%;
-    box-shadow: 0px 10px 30px rgba(0,0,0,0.5);
-    z-index: 1001;
-    transform: scale(0.8);
-    transition: transform 0.3s ease;
-}
-
-.modal-conteudo h3 {
-    color: #0056B3;
-    font-size: 28px;
-    margin-bottom: 15px;
-}
-
-/* Botão de Fechar (X) */
-.fechar-modal {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 36px;
-    text-decoration: none;
-    color: #555;
-    font-weight: bold;
-}
-
-.fechar-modal:hover {
-    color: #000;
-}
-
-/* QUANDO O CARD É CLICADO (:target ativado) */
-.modal-overlay:target {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.modal-overlay:target .modal-conteudo {
-    transform: scale(1);
-}
-
-/* Botão de Ajuda */
+/* Botão de Ajuda e Navegação */
 .area-ajuda {
     text-align: center;
     margin: 40px 0;
 }
 
-.botao-ajuda {
+.botao-ajuda, .botao-voltar {
     background-color: #28A745;
     color: #FFFFFF;
-    font-size: 26px;
+    font-size: 22px;
     font-weight: bold;
-    padding: 20px 40px;
+    padding: 18px 35px;
     border: none;
     border-radius: 15px;
     cursor: pointer;
-    width: 100%;
-    max-width: 400px;
+    display: inline-block;
+    text-decoration: none;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    text-align: center;
 }
 
-.botao-ajuda:hover {
+.botao-ajuda {
+    width: 100%;
+    max-width: 400px;
+}
+
+.botao-ajuda:hover, .botao-voltar:hover {
     background-color: #218838;
+}
+
+/* Páginas Secundárias */
+.pagina-detalhes {
+    background-color: #FFFFFF;
+    border: 2px solid #CCCCCC;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.pagina-detalhes h2 {
+    color: #004080;
+    font-size: 30px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #004080;
+    padding-bottom: 10px;
+}
+
+.pagina-detalhes h3 {
+    color: #0056B3;
+    font-size: 24px;
+    margin: 20px 0 10px 0;
+}
+
+.pagina-detalhes p, .pagina-detalhes ul {
+    margin-bottom: 15px;
+}
+
+.pagina-detalhes ul {
+    padding-left: 25px;
+}
+
+.pagina-detalhes li {
+    margin-bottom: 8px;
+}
+
+.figura-tema {
+    text-align: center;
+    margin: 25px 0;
+}
+
+.figura-tema svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- FORMAS GEOMÉTRICAS 3D (CSS) --- */
+.cena-3d {
+    width: 80px;
+    height: 80px;
+    perspective: 400px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Cubo 3D */
+.cubo-3d {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-20deg) rotateY(30deg);
+    animation: girar 8s infinite linear;
+}
+
+.face {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 86, 179, 0.7);
+    border: 2px solid #004080;
+}
+
+.frente   { transform: translateZ(20px); }
+.tras     { transform: rotateY(180deg) translateZ(20px); }
+.esquerda { transform: rotateY(-90deg) translateZ(20px); }
+.direita  { transform: rotateY(90deg) translateZ(20px); }
+.topo     { transform: rotateX(90deg) translateZ(20px); }
+.base     { transform: rotateX(-90deg) translateZ(20px); }
+
+/* Pirâmide 3D */
+.piramide-3d {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-20deg) rotateY(30deg);
+    animation: girar 8s infinite linear;
+}
+
+.p-face {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 40px solid rgba(222, 88, 51, 0.75);
+    transform-origin: 50% 100%;
+}
+
+.p-frente   { transform: translateZ(20px) rotateX(30deg); }
+.p-tras     { transform: translateZ(-20px) rotateY(180deg) rotateX(30deg); }
+.p-esquerda { transform: translateX(-20px) rotateY(-90deg) rotateX(30deg); }
+.p-direita  { transform: translateX(20px) rotateY(90deg) rotateX(30deg); }
+
+/* Esfera 3D */
+.esfera-3d {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 15px 15px, #28A745, #000);
+    box-shadow: inset -5px -5px 10px rgba(0,0,0,0.5), 0 5px 10px rgba(0,0,0,0.3);
+    animation: flutuar 3s infinite ease-in-out;
+}
+
+@keyframes girar {
+    from { transform: rotateX(-20deg) rotateY(0deg); }
+    to { transform: rotateX(-20deg) rotateY(360deg); }
+}
+
+@keyframes flutuar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
 }
 
 /* Rodapé */
